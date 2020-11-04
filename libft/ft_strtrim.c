@@ -6,7 +6,7 @@
 /*   By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 15:18:23 by mpowder           #+#    #+#             */
-/*   Updated: 2020/11/02 16:01:18 by mpowder          ###   ########.fr       */
+/*   Updated: 2020/11/04 23:05:42 by mpowder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ char		*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	if (!s1 || !set)
 		return (0);
-	while (ft_check(*s1, set))
+	while (ft_check(*s1, set) && *s1)
 		s1++;
 	size = ft_strlen(s1);
 	if (!size)
 		return ((char *)s1);
-	while (ft_check(s1[size - 1], set))
+	size--;
+	while (s1[size] && ft_check(s1[size], set))
 		size--;
-	p = (char *)malloc(size + 1);
+	p = (char *)malloc(++size + 1);
 	if (!p)
 		return (0);
 	while (i < size)

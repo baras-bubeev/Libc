@@ -6,7 +6,7 @@
 /*   By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 22:48:39 by mpowder           #+#    #+#             */
-/*   Updated: 2020/11/02 15:54:51 by mpowder          ###   ########.fr       */
+/*   Updated: 2020/11/04 22:05:21 by mpowder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
+
 	while (*lst)
 	{
 		del((*lst)->content);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 19:30:46 by mpowder           #+#    #+#             */
-/*   Updated: 2020/11/02 17:18:28 by mpowder          ###   ########.fr       */
+/*   Created: 2020/11/04 17:22:58 by mpowder           #+#    #+#             */
+/*   Updated: 2020/11/04 23:06:09 by mpowder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	ft_count_word(char const *s, char c)
 
 	i = 1;
 	count = 0;
-	if (!s)
-		return (0);
 	if (s[0] != c && s[0] != '\0')
 		count++;
 	while (s[i])
@@ -37,36 +35,54 @@ static int	ft_wordlen(char const *s, char c)
 	int		len;
 
 	len = 0;
-	while (s[len] != c)
+	while (s[len] != c && s[len])
 		len++;
 	return (len);
 }
 
+static char	*ft_getword(char const **s, char c)
+{
+	char	*p;
+	int		wlen;
+	int		i;
+
+	wlen = ft_wordlen(*s, c);
+	if (!(p = (char *)malloc(sizeof(p) * (wlen + 1))))
+		return (0);
+	i = 0;
+	while (i < wlen)
+	{
+		p[i++] = **s;
+		(*s)++;
+	}
+	p[i] = '\0';
+	return (p);
+}
+
 char		**ft_split(char const *s, char c)
 {
-	int		i;
-	int		j;
+	char	**strs;
 	int		wcount;
-	int		wlen;
-	char	**p;
+	int		i;
 
-	i = 0;
-	wcount = ft_count_word(s, c);
-	p = (char **)malloc(sizeof(char **) * (wcount + 1));
-	if (!p || !s)
+	if (!s)
 		return (0);
+	wcount = ft_count_word(s, c);
+	if (!(strs = (char **)malloc(sizeof(strs) * (wcount + 1))))
+		return (0);
+	i = 0;
 	while (i < wcount)
 	{
 		while (*s == c)
 			s++;
-		wlen = ft_wordlen(s, c);
-		p[i] = (char *)malloc(sizeof(char *) * (wlen + 1));
-		j = 0;
-		while (j < wlen)
-			p[i][j++] = *(s++);
-		p[i][j] = '\0';
-		i++;
+		if (!(strs[i++] = ft_getword(&s, c)))
+		{
+			while (--i >= 0)
+				free(strs[i]);
+			free(strs);
+			return (0);
+		}
 	}
-	p[i] = 0;
-	return (p);
+	strs[i] = 0;
+	return (strs);
 }
