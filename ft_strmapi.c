@@ -6,7 +6,7 @@
 /*   By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 18:00:20 by mpowder           #+#    #+#             */
-/*   Updated: 2020/11/02 15:56:33 by mpowder          ###   ########.fr       */
+/*   Updated: 2020/11/21 03:00:19 by mpowder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	if (!s)
 		return (0);
-	p = (char *)malloc(ft_strlen(s) + 1);
-	if (!p)
+	if (!(p = (char *)malloc(ft_strlen(s) + 1)))
 		return (0);
 	while (s[i])
 	{

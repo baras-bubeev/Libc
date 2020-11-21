@@ -6,7 +6,7 @@
 /*   By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:36:29 by mpowder           #+#    #+#             */
-/*   Updated: 2020/11/04 20:58:22 by mpowder          ###   ########.fr       */
+/*   Updated: 2020/11/21 03:04:21 by mpowder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (0);
-	p = (char *)malloc(len + 1);
+	if (!(p = (char *)malloc(len + 1)))
+		return (0);
 	if (start >= ft_strlen(s))
 	{
 		*p = '\0';
 		return (p);
 	}
-	if (!p)
-		return (0);
 	while (i < len)
 		p[i++] = s[start++];
 	p[i] = '\0';

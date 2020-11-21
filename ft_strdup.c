@@ -6,7 +6,7 @@
 /*   By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 22:26:51 by mpowder           #+#    #+#             */
-/*   Updated: 2020/11/02 15:56:19 by mpowder          ###   ########.fr       */
+/*   Updated: 2020/11/21 02:39:47 by mpowder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,15 @@
 char	*ft_strdup(const char *s1)
 {
 	int		i;
-	int		j;
+	int		size;
 	char	*p;
 
 	i = 0;
-	j = 0;
-	while (s1[i])
-		i++;
-	p = malloc(i + 1);
-	if (p != 0)
-	{
-		while (j < i)
-		{
-			p[j] = s1[j];
-			j++;
-		}
-		p[j] = '\0';
-	}
+	size = ft_strlen(s1);
+	if (!(p = malloc(size + 1)))
+		return (0);
+	while (i < size)
+		p[i++] = *s1++;
+	p[i] = '\0';
 	return (p);
 }

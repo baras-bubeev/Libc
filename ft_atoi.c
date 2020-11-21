@@ -6,14 +6,14 @@
 /*   By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:47:46 by mpowder           #+#    #+#             */
-/*   Updated: 2020/11/03 19:55:25 by mpowder          ###   ########.fr       */
+/*   Updated: 2020/11/08 22:26:22 by mpowder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int	ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
 	int	i;
 	int	r;
