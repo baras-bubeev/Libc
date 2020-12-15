@@ -158,3 +158,130 @@ void ft_putnbr_fd(int n, int fd);
 ***Description***<br/>
 Outputs the integer `n` to the given file descriptor.
 ___
+### The following structure was used for functions with lists:
+```C
+typedef struct  s_list
+{
+void            *content;
+struct s_list   *next;
+}               t_list;
+```
+___
+### lstnew
+***Prototype***
+```C
+t_list *ft_lstnew(void *content);
+```
+***Parameters***<br/>
+#1. The content to create the new element with.<br/>
+
+***Return value***<br/>
+The new element.<br/>
+
+***Description***<br/>
+Allocates (with malloc(3)) and returns a new element. The variable `content` is initialized with the value of the parameter `content`. The variable `next` is initialized to `NULL`.
+___
+### lstadd_front
+***Prototype***
+```C
+void ft_lstadd_front(t_list **lst, t_list *new);
+```
+***Parameters***<br/>
+#1. The address of a pointer to the first link of a list.<br/>
+#2. The address of a pointer to the element to be added to the list.<br/>
+
+***Description***<br/>
+Adds the element `new` at the beginning of the list.
+___
+### lstsize
+***Prototype***
+```C
+int ft_lstsize(t_list *lst);
+```
+***Parameters***<br/>
+#1. The beginning of the list.<br/>
+
+***Return value***<br/>
+Length of the list.<br/>
+
+***Description***<br/>
+Counts the number of elements in a list.<br/>
+___
+### lstlast
+***Prototype***
+```C
+t_list *ft_lstlast(t_list *lst);
+```
+***Parameters***<br/>
+#1. The beginning of the list.<br/>
+
+***Return value***<br/>
+Last element of the list.<br/>
+
+***Description***<br/>
+Returns the last element of the list.<br/>
+___
+### lstadd_back
+***Prototype***
+```C
+void ft_lstadd_back(t_list **lst, t_list *new);
+```
+***Parameters***<br/>
+#1. The address of a pointer to the first link of a list.<br/>
+#2. The address of a pointer to the element to be added to the list.<br/>
+
+***Description***<br/>
+Adds the element `new` at the end of the list.<br/>
+___
+### lstdelone
+***Prototype***
+```C
+void ft_lstdelone(t_list *lst, void (*del)(void *));
+```
+***Parameters***<br/>
+#1. The element to free.<br/>
+#2. The address of the function used to delete the content.<br/>
+
+***Description***<br/>
+Takes as a parameter an element and frees the memory of the element’s content using the function `del` given as a parameter and free the element. The memory of `next` must not be freed.<br/>
+___
+### lstclear
+***Prototype***
+```C
+void ft_lstclear(t_list **lst, void (*del)(void *));
+```
+***Parameters***<br/>
+#1. The adress of a pointer to an element.<br/>
+#2. The adress of the function used to delete the content of the element.<br/>
+
+***Description***<br/>
+Deletes and frees the given element and every successor of that element, using the function `del` and free(3). Finally, the pointer to the list must be set to `NULL`.<br/>
+___
+### lstiter
+***Prototype***
+```C
+void ft_lstiter(t_list *lst, void (*f)(void *));
+```
+***Parameters***<br/>
+#1. The adress of a pointer to an element.<br/>
+#2. The adress of the function used to iterate on the list.<br/>
+
+***Description***<br/>
+Iterates the list `lst` and applies the function `f` to the content of each element.<br/>
+___
+### lstmap
+***Prototype***
+```C
+t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+```
+***Parameters***<br/>
+#1. The adress of a pointer to an element.<br/>
+#2. The adress of the function used to iterate on the list.<br/>
+#3. The adress of the function used to delete the content of an element if needed.<br/>
+
+***Return value***<br/>
+The new list. `NULL` if the allocation fails.<br/>
+
+***Description***<br/>
+Iterates the list `lst` and applies the function `f` to the content of each element. Creates a new list resulting of the successive applications of the function `f`. The `del` function is used to delete the content of an element if needed.<br/>
+___
