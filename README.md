@@ -1,4 +1,4 @@
-# libft
+# Libc
 ## About
 This project gave me the opportunity to rewrite some of the functions of the standard C library.<br/>
 ___
