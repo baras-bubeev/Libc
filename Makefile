@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mpowder <mpowder@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/09/27 12:48:01 by mpowder           #+#    #+#              #
-#    Updated: 2020/11/04 22:19:16 by mpowder          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 SRCS	=	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_strncmp.c ft_strnstr.c ft_tolower.c ft_toupper.c \
 			ft_strrchr.c ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c \
@@ -18,17 +6,17 @@ SRCS	=	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-OBJS	= ${SRCS:.c=.o}
+OBJS	= $(SRCS:.c=.o)
 
 S_BONUS	=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 			ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-			ft_lstmap.c
+			ft_lstmap.c ft_strtrim_bonus.c
 
-O_BONUS	= ${S_BONUS:.c=.o}
+O_BONUS	= $(S_BONUS:.c=.o)
 
-INC		= libft.h
+INC		= libc.h
 
-NAME	= libft.a
+NAME	= libc.a
 
 CC		= gcc
 
@@ -41,23 +29,23 @@ RM		= rm -f
 CFLAGS	= -Wall -Wextra -Werror
 
 .c.o:
-			${CC} ${CFLAGS} -I${INC} -c $< -o ${<:.c=.o}
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME):	${OBJS} ${INC}
-			${AR} ${NAME} ${OBJS}
-			${RANL} ${NAME}
+$(NAME):	$(OBJS) $(INC)
+			$(AR) $(NAME) $(OBJS)
+			$(RANL) $(NAME)
 
-all:		${NAME}
+all:		$(NAME)
 
-bonus:		${NAME} ${O_BONUS}
-			${AR} ${NAME} ${O_BONUS}
-			${RANL} ${NAME}
+bonus:		$(NAME) $(O_BONUS)
+			$(AR) $(NAME) $(O_BONUS)
+			$(RANL) $(NAME)
 
 clean:
-			${RM} ${OBJS} ${O_BONUS}
+			$(RM) $(OBJS) $(O_BONUS)
 
 fclean:		clean
-			${RM} ${NAME}
+			$(RM) $(NAME)
 
 re:			fclean all
 
